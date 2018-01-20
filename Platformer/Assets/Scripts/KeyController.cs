@@ -8,22 +8,12 @@ public class KeyController : MonoBehaviour {
 
 	void Awake () {
 		// make sure that the gate knows that this key is bound to it
-		gate.GetComponent<GateController> ().addKeyToGate ();
-
-		Debug.Log("There is an awakening");
+		GateController.AddKeyToGate ();
 	}
 
 	public void CollectKey() {
-		gate.GetComponent<GateController> ().removeKeyFromGate ();
+		GateController.RemoveKeyFromGate ();
 		Destroy (gameObject);
-	}
-	
-	void onTriggerEnter2D(Collision2D col) {
-		Debug.Log("There is a collision");
-		// if the player gets the key
-		if (col.gameObject.name == "Player"){
-			
-		}
 	}
 
 }

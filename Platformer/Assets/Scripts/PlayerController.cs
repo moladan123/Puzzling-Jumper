@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
+
+    public int currentlevel = 1;
 
 	[SerializeField] public float moveSpeed = 10f;
 
@@ -20,7 +23,8 @@ public class PlayerController : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D> ();
 		jumpCheck = GetComponentInChildren<CircleCollider2D> ();
 		updateUI ();
-	}
+        Debug.Log("It begins");
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -44,11 +48,21 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D c) {
-		Debug.Log ("something happened");
-		if (c.gameObject.name == "Key"){
+        
+		if (c.gameObject.tag == "Key"){
 			c.gameObject.GetComponent<KeyController> ().CollectKey();
 			updateUI ();
-		}
+		} else if (c.gameObject.name == "Gate")
+        {
+            
+            if (GateController.IsOpen())
+            {
+                Debug.Log("got here");
+                currentlevel++;
+                Debug.Log("Level " + currentlevel);
+                SceneManager.LoadScene("Level " + currentlevel, LoadSceneMode.Single);
+            }
+        }
 	}
 
 	void updateUI() {

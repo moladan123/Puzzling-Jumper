@@ -6,28 +6,19 @@ public class GateController : MonoBehaviour {
 
 	public static int keysNeeded = 0;
 
-	void Awake () {
-		
-	}
-
 	// each key has to add itself to the gate
-	public void addKeyToGate() {
+	public static void AddKeyToGate() {
 		keysNeeded++;
 	}
 
-	public void removeKeyFromGate() {
+	public static void RemoveKeyFromGate() {
 		keysNeeded--;
-		if (keysNeeded == 0) {
-			unlockGate ();
+		if (keysNeeded < 0) {
+            keysNeeded = 0;
 		}
 	}
 
-	// called when all keys are unlocked
-	void unlockGate() {
-
-	}
-
-	public bool isOpen() {
+	public static bool IsOpen() {
 		return keysNeeded == 0;
 	}
 }
