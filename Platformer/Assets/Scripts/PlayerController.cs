@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 		jumpCheck = GetComponentInChildren<CircleCollider2D> ();
-		updateUI ();
+		UpdateUI ();
         Debug.Log("It begins");
     }
 	
@@ -51,22 +51,25 @@ public class PlayerController : MonoBehaviour {
         
 		if (c.gameObject.tag == "Key"){
 			c.gameObject.GetComponent<KeyController> ().CollectKey();
-			updateUI ();
+			UpdateUI ();
 		} else if (c.gameObject.name == "Gate")
         {
             
             if (GateController.IsOpen())
             {
-                Debug.Log("got here");
-                currentlevel++;
-                Debug.Log("Level " + currentlevel);
-                SceneManager.LoadScene("Level " + currentlevel, LoadSceneMode.Single);
+                LoadNextLevel();
             }
         }
 	}
 
-	void updateUI() {
+	void UpdateUI() {
 		keyCounterText.text = "Keys needed: " + GateController.keysNeeded;
 	}
+
+    void LoadNextLevel()
+    {
+        int i = Application.loadedLevel;
+        Application.LoadLevel(i + 1);
+    }
 
 }

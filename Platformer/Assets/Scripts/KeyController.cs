@@ -6,7 +6,7 @@ public class KeyController : MonoBehaviour {
 
 	public GameObject gate;
 
-	void Awake () {
+	void Start () {
 		// make sure that the gate knows that this key is bound to it
 		GateController.AddKeyToGate ();
 	}
