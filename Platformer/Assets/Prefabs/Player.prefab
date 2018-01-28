@@ -99,9 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b54fa0eecba4b40b909f0075729134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentlevel: 1
   moveSpeed: 10
-  maxJumps: 2
+  numAirJumps: 1
   jumpStrength: 15
+  keyCounterText: {fileID: 0}
 --- !u!212 &212734971263004200
 SpriteRenderer:
   m_ObjectHideFlags: 1

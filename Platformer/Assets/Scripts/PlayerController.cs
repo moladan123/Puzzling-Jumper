@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
 	CircleCollider2D jumpCheck;
 
 	int jumpsLeft = 0;
-	[SerializeField] public int maxJumps = 2;
+	[SerializeField] public int numAirJumps = 1;
 	[SerializeField] public float jumpStrength = 100f;
 
 	public Text keyCounterText;
@@ -34,20 +34,30 @@ public class PlayerController : MonoBehaviour {
 		if (Mathf.Abs (moveRight) > 0.01)
 			rb.velocity = new Vector2 (moveRight * moveSpeed, rb.velocity.y);
 
-		// jumping
-		bool jump = (Input.GetAxisRaw("Vertical") == 1);
-		if (jump && jumpsLeft > 0) {
-			rb.velocity = new Vector2 (rb.velocity.x, jumpStrength);		
-			jumpsLeft--;
-		}
+		
 
 		// check if grounded
 		if (jumpCheck.IsTouchingLayers()){
-			jumpsLeft = maxJumps;
+			jumpsLeft = numAirJumps;
 		} 
 	}
 
-	void OnTriggerEnter2D (Collider2D c) {
+    private void Update()
+    {
+        // jumping
+        bool jump = Input.GetKeyDown("up");
+        bool jumpContinue = Input.GetKey("up");
+        if (jump && jumpsLeft > 0) // Oh god why does this work?
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpStrength);
+            jumpsLeft--;
+        }
+        if (jumpContinue && rb.velocity.y > 0.0f) { rb.gravityScale = 0.8f; }
+        else { rb.gravityScale = 2; }
+
+    }
+
+    void OnTriggerEnter2D (Collider2D c) {
         
 		if (c.gameObject.tag == "Key"){
 			c.gameObject.GetComponent<KeyController> ().CollectKey();
