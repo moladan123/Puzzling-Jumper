@@ -164,11 +164,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4991160631233892, guid: 26741c78506e4fd4e95618abed2d91b4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.3
+      value: -40.5
       objectReference: {fileID: 0}
     - target: {fileID: 4991160631233892, guid: 26741c78506e4fd4e95618abed2d91b4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.9
+      value: 7.7
       objectReference: {fileID: 0}
     - target: {fileID: 4991160631233892, guid: 26741c78506e4fd4e95618abed2d91b4, type: 2}
       propertyPath: m_LocalPosition.z
@@ -971,7 +971,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentlevel: 1
   moveSpeed: 10
-  maxJumps: 2
+  numAirJumps: 1
   jumpStrength: 15
   keyCounterText: {fileID: 0}
 --- !u!50 &2005067166

@@ -79,7 +79,16 @@ public class PlayerController : MonoBehaviour {
     void LoadNextLevel()
     {
         int i = Application.loadedLevel;
-        Application.LoadLevel(i + 1);
+        if (Application.levelCount > i)
+        {
+            Application.LoadLevel(i + 1);
+            Application.UnloadLevel(i);
+        }
+        else
+        {
+            Application.LoadLevel(1);
+        }
+        
     }
 
 }
